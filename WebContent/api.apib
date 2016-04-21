@@ -1,0 +1,406 @@
+FORMAT: 1A
+
+# phonebook
+
+## Group phonebook
+
+### /api/phonebook
+
+#### Returns list of entries matching the query [GET /api/phonebook{?title,firstname,lastname}]
+
++ Parameters
+
+    + title
+    
+    + firstname
+    
+    + lastname
+
++ Relation: queryPhonebook
+
++ Response 200
+
+    OK
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "phoneNumber": {
+                        "type": "string"
+                      }
+                    },
+                    "xml": {
+                      "name": "phonebookEntry"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "phonebookEntries"
+              }
+            }
+
++ Response 401
+
+    User not authorized
+
+    + Body
+
+#### Adds entry to phonebook [POST]
+
++ Relation: create
+
++ Request
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 201
+
+    Created successfully
+
+    + Body
+
++ Request
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 401
+
+    User not authorized
+
+    + Body
+
+### /api/phonebook/{id}
+
+#### Returns entry with provided ID [GET]
+
++ Parameters
+
+    + id (required)
+
++ Relation: getEntry
+
++ Response 200
+
+    OK
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 401
+
+    User not authorized
+
+    + Body
+
++ Response 404
+
+    Entry not found for given ID
+
+    + Body
+
+#### Updates an existing entry in the phonebook [PUT]
+
++ Parameters
+
+    + id (required)
+
++ Relation: update
+
++ Request
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 200
+
+    OK
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Request
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 401
+
+    User not authorized
+
+    + Body
+
++ Request
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              },
+              "xml": {
+                "name": "phonebookEntry"
+              }
+            }
+
++ Response 404
+
+    Entry not found for given ID
+
+    + Body
+
+#### Deletes an existing entry from the phonebook [DELETE]
+
++ Parameters
+
+    + id (required)
+
++ Relation: deleteEntry
+
++ Response 204
+
+    OK
+
+    + Body
+
++ Response 401
+
+    User not authorized
+
+    + Body
+
++ Response 404
+
+    Entry not found for given ID
+
+    + Body
+
+## Group user
+
+### /api/user
+
+#### Creates new user entry [POST]
+
++ Relation: createUser
+
++ Response 200
+
+    successful operation
+
+    + Body
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "xml": {
+                    "name": "userkey"
+                  }
+                }
+              },
+              "xml": {
+                "name": "userEntry"
+              }
+            }
+
